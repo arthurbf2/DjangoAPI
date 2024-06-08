@@ -1,0 +1,6 @@
+<h2>My Watched Movies</h2>
+<ul>
+    {% for movie in movies %}
+        <li>{{ movie.movie_title }} - Watched on {{ movie.watched_on }}</li>
+    {% endfor %}
+</ul>

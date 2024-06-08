@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Lista de Filmes</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Bem-vindo à Minha Lista de Filmes</h1>
+        <p>Aqui você pode gerenciar os filmes que já assistiu e avaliá-los.</p>
+        <h2>Adicionar Filme Assistido</h2>
+        <form action="{% url 'add_watched_movie' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Adicionar Filme</button>
+        </form>
+        <h2>Filmes Mais Assistidos</h2>
+        <a href="{% url 'most_watched_movies_api' %}">Ver Filmes Mais Assistidos</a>
+    {% else %}
+        <p>Você precisa estar logado para adicionar filmes. Faça <a href="{% url 'login' %}">login</a> ou <a href="{% url 'register' %}">registre-se</a>.</p>
+    {% endif %}
+</body>
+</html>
